@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanda.mapper.PlatformAccountMapper">
+	
+	<select id="findByAccNameAndPwd" resultType="platformAccount" >
+	 	select * from platform_account where accname=#{0} and pwd=#{1}
+	 </select>
+
+	 <update id="updateDjTimeByAccName">
+		update platform_account set djTime=#{1} where accname=#{0}
+	 </update>
+	 
+	<select id="findPagePlatform" resultType="PlatformAccount">
+		select accname,name,status,djTime from platform_account limit #{0},#{1}
+	</select>
+	<select id="platformCount" resultType="int">
+		select count(1) from platform_account
+	</select>
+	 <select id="fuzzyFind"  resultType="PlatformAccount">
+        select * from  platform_account
+        <where>
+        <if test="accname != null and accname != ''">
+             accname like concat("%",#{accname},"%")
+        </if>
+        <if test="name != null and name != ''">
+            and name like concat("%",#{name},"%")
+        </if>
+        <if test="status != null and status != ''">
+            and status like concat("%",#{status},"%")
+        </if>
+        </where>
+        limit #{currentPage},#{everyPageNum}
+    </select>
+    <select id="fuzzyFindInt"  resultType="int">
+        select count(1) from  platform_account
+        <where>
+        <if test="accname != null and accname != ''">
+             accname like concat("%",#{accname},"%")
+        </if>
+        <if test="name != null and name != ''">
+            and name like concat("%",#{name},"%")
+        </if>
+        <if test="status != null and status != ''">
+            and status like concat("%",#{status},"%")
+        </if>
+        </where>
+    </select>
+    <update id="updateStatus">
+    	update platform_account set status=#{0} where accname=#{1} and name=#{2}
+    </update>
+    <update id="updateName">
+    	update platform_account set name=#{0} where accname=#{1} and name=#{2}
+    </update>
+    <delete id="deletePlatform">
+    	delete from platform_account where accname=#{0} and name=#{1}
+    </delete>
+	<select id="findPageBusiness" resultType="Business">
+		select bname,tel,email,idcard from business_info limit #{0},#{1}
+	</select>
+	
+	
+	<select id="businessCount" resultType="int">
+		select count(1) from business_info
+	</select>
+	
+	<!-- 商家模糊查询 -->
+	<select id="fuzzyFindBusiness"  resultType="Business">
+        select * from  business_info
+        <where>
+        <if test="tel != null and tel != ''">
+             tel like concat("%",#{tel},"%")
+        </if>
+        <if test="bname != null and bname != ''">
+            and bname like concat("%",#{bname},"%")
+        </if>
+        </where>
+        limit #{currentPage},#{everyPageNum}
+    </select>
+    
+    
+    <select id="fuzzyFindBusinessInt"  resultType="int">
+        select count(1) from  business_info
+        <where>
+        <if test="tel != null and tel != ''">
+             tel like concat("%",#{tel},"%")
+        </if>
+        <if test="bname != null and bname != ''">
+            and bname like concat("%",#{bname},"%")
+        </if>
+        </where>
+    </select>
+    
+    <insert id="addAdmin" parameterType="com.yanda.bean.PlatformAccount">
+	 	insert into platform_account values(null,#{accname}, #{pwd},#{status},null,#{name})
+	 </insert>
+</mapper>

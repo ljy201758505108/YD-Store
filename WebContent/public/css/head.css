@@ -1,0 +1,52 @@
+#title{
+				height: 30px;
+				width: 100%;
+				background-color: #e3e4e5;
+			}
+			.title{
+				height: 30px;
+				width: 100%;
+				margin: 0 auto;
+				background-color: #e3e4e5;
+			}
+			#head{
+				height: 100px;
+				width: 100%;
+				background-color: white;
+			}
+			
+			.left-title li{
+				list-style: none;
+				font-size: 12px;
+				color: #999999;
+				float: left;
+				line-height: 30px;
+				width: 90px;
+				padding: 0  0px;
+				margin: 0 0 0 10px;
+			}
+			.right-title{
+			}
+			.right-title li{
+				list-style: none;
+				font-size: 12px;
+				color: #999999;
+				float: right;
+				line-height: 30px;
+				width: 64px;
+				padding: 0 8px;
+			}
+			#sign{
+				color: red;
+			}
+			.title li:hover{
+				color: red;
+				cursor: pointer;
+			}
+			
+			.head{
+				height: 90px;
+				width: 100%;
+				background-color: #5BC0DE;
+				margin: 0 auto;
+			}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanda.mapper.UserMapper">
+
+	 <select id="isTelExist" resultType="int">
+	 	select count(1) from user where tel=#{0}
+	 </select>
+	
+	 <insert id="addUser" parameterType="com.yanda.bean.User">
+	 	insert into user values(null,#{uname}, #{pwd},#{addr},#{tel})
+	 </insert>
+	 
+	 <select id="checkLoginInfo" resultType="int">
+	 	select count(1) from user where tel=#{0} and pwd=#{1}
+	 </select>
+	 
+	 <select id="findTelAndPwd" resultType="com.yanda.bean.User">
+	 	select * from user where tel=#{0} and pwd=#{1}
+	 </select>
+	 
+	<update id="changePwd">
+		update user set pwd=#{0} where uname=#{1}
+	</update>
+	
+	<insert id="addToken">
+		insert into user_token values(#{0},#{1},#{2},#{3})
+	</insert>
+	
+	<select id="findTokenByTokenName" resultType="com.yanda.bean.Token">
+		select * from user_token where token=#{0}
+	</select>
+	
+	<select id="findUserByToken" resultType="com.yanda.bean.User">
+		select u.* from user u ,user_token ut where u.uid=ut.uid and ut.token=#{0}
+	</select> 
+	
+	<delete id="deleteToken" parameterType="int">
+		delete from user_token where uid=#{0}
+	</delete>
+
+	 
+	
+</mapper>

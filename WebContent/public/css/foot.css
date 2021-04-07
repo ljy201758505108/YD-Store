@@ -1,0 +1,27 @@
+				#foot{
+					width: 100%;
+					height: 140px;
+					background-color: snow;
+				}
+				#foot>.container p{
+					font-size: 12px;
+					line-height: 12px;
+					width: fit-content;
+					margin: 15px auto;
+				}
+				#foot>.container span{
+					font-size: 12px;
+					line-height: 12px;
+					width: fit-content;
+					margin: 5px auto;
+				}
+				
+				#foot>.container p:hover{
+					cursor: pointer;
+					color: red;
+				}
+				.footer{
+					width: fit-content;
+					height: fit-content;
+					margin: 5px auto;
+				}

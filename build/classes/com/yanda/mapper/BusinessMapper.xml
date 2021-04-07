@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yanda.mapper.BusinessMapper">
+
+	    <select id="isTelExist" resultType="int">
+	 		select count(1) from business_info where tel=#{0}
+	    </select>
+	    
+	    <select id="isIDCardExist" resultType="int">
+	 		select count(1) from business_info where idcard=#{0}
+	    </select> 
+	    
+	    <select id="isEmailExist" resultType="int">
+	 		select count(1) from business_info where email=#{0}
+	    </select>
+	    
+	    <insert id="addBusiness" parameterType="com.yanda.bean.Business">
+	        insert into business_info values(null,#{bname}, #{idcard},#{province},#{city},#{district},#{addr},#{status},#{tel},#{email},#{pwd})
+	    </insert>
+	    
+	    <select id="findTelAndEmailAndPwd" resultType="com.yanda.bean.Business">
+	 		select * from business_info where tel=#{0} and email=#{1} and pwd=#{2}
+	 	</select>
+	 	
+	    <insert id="addPath">
+	        insert into b_attach values(null,#{0},#{1},#{2})
+	    </insert>
+	 	
+	    <insert id="addFacePath">
+	        insert into b_attach values(null,#{0},#{idcard_back},#{person_card})
+	    </insert>
+	    
+	    <insert id="addBackPath">
+	        insert into b_attach values(null,#{idcard_face},#{0},#{person_card})
+	    </insert>
+	    
+	    <insert id="addPersonPath">
+	        insert into b_attach values(null,#{idcard_face},#{idcard_back},#{0})
+	    </insert>
+	    
+	    <insert id="addShop" parameterType="com.yanda.bean.Shop">
+	        insert into shop values(null,#{shopName}, #{shopClass},#{shopInfo},#{shopType},#{addr},#{postal_code},#{shopIntroduction},#{bid})
+	    </insert>
+	    
+	    <insert id="addShopLogoPath" >
+		insert into shop_logo values(null,#{shopLogo})
+	</insert>
+	 
+	 
+	
+</mapper>
